@@ -18,4 +18,11 @@ public class BookService {
 	public List<Book> findAll(){
 		return bookRepository.findAll();
 	}
+	
+	//Metodo para inserir todos os valores 
+	public Book insert(Book obj) {
+		return bookRepository.insert(obj);
+	}
+	
+
 }
