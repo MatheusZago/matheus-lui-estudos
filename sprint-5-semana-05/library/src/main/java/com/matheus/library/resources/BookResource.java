@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,10 +26,7 @@ public class BookResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<BookDTO>> findAll() {
-//		Book book1 = new Book("1", "1984", "George Orwell", "1949", "Ficção Cientifica");
-//		Book book2 = new Book("2", "Dom Casmurro", "Machado de Assis", "1899", "Romance");
-//		Book book3 = new Book("3", "The Lord of the Rings", "J.R.R. Tolkien", "1954", "Fantasia");
-//		Book book4 = new Book("4", "Animal Farm", "George Orwell", "1954", "Fabula");
+
 
 		List<Book> list = bookService.findAll();
 		//Trnasformando a lista em DTO
@@ -44,7 +42,12 @@ public class BookResource {
 		//Pegando o endereço do novo objeto recebido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-		
+	}
+	
+	@PostMapping("/insertAll")
+	public void insertAll() {
+		bookService.insertAll();
+
 	}
 
 }
