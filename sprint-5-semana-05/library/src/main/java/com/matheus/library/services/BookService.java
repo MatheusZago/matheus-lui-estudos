@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matheus.library.domain.Book;
+import com.matheus.library.dto.BookDTO;
 import com.matheus.library.repository.BookRepository;
 
 @Service
@@ -22,6 +23,10 @@ public class BookService {
 	//Metodo para inserir todos os valores 
 	public Book insert(Book obj) {
 		return bookRepository.insert(obj);
+	}
+	
+	public Book fromDTO(BookDTO objDTO) {
+		return new Book(objDTO.getId(), objDTO.getTitle(), objDTO.getAuthor(), objDTO.getYear(), objDTO.getGenre());
 	}
 	
 

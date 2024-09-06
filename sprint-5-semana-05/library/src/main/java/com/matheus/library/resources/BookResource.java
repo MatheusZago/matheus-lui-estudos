@@ -1,13 +1,16 @@
 package com.matheus.library.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.matheus.library.domain.Book;
 import com.matheus.library.dto.BookDTO;
@@ -34,10 +37,14 @@ public class BookResource {
 
 	}
 	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public ResponseEntity<Void> insert( @RequestBody Book obj) {
-//		Book obj = service.
-//		
-//	}
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody BookDTO objdto) {
+		Book obj = bookService.fromDTO(objdto);
+		obj = bookService.insert(obj);
+		//Pegando o endereço do novo objeto recebido
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+		
+	}
 
 }
