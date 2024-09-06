@@ -14,4 +14,5 @@ public interface BookRepository extends MongoRepository<Book, String>{
 
     // Método de deleção baseado em nome do campo
     void deleteByTitle(String title);
+    Book findByTitle(String title);
 }

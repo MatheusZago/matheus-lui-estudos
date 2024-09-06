@@ -53,10 +53,10 @@ public class BookResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
- 	public ResponseEntity<Void> update(@RequestBody BookDTO objDto, @PathVariable String id) {
+	@RequestMapping(value="/{title}", method=RequestMethod.PUT)
+ 	public ResponseEntity<Void> update(@RequestBody BookDTO objDto, @PathVariable String title) {
 		Book obj = bookService.fromDTO(objDto);
-		obj.setId(id);
+		obj.setTitle(title);
 		obj = bookService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
