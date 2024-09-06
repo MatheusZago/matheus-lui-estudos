@@ -53,6 +53,16 @@ public class BookResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+ 	public ResponseEntity<Void> update(@RequestBody BookDTO objDto, @PathVariable String id) {
+		Book obj = bookService.fromDTO(objDto);
+		obj.setId(id);
+		obj = bookService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	 
+	
+	
 	@PostMapping("/insertAll")
 	public void insertAll() {
 		bookService.insertAll();
@@ -60,8 +70,9 @@ public class BookResource {
 	}
 	
     @DeleteMapping("/removeByTitle")
-    public void removeByTitle(@RequestParam String title) {
+    public ResponseEntity<Void> removeByTitle(@RequestParam String title) {
         bookService.removeByTitle(title);
+		return ResponseEntity.noContent().build();
     }
 
 }

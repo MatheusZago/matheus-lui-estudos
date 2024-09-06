@@ -37,9 +37,6 @@ public class BookService {
 		bookRepository.deleteById(id);
 	}
 	
-	public Book fromDTO(BookDTO objDTO) {
-		return new Book(objDTO.getId(), objDTO.getTitle(), objDTO.getAuthor(), objDTO.getYear(), objDTO.getGenre());
-	}
 	
 	public void insertAll() {
 		Book book1 = new Book(null, "1984", "George Orwell", "1949", "Ficção Cientifica");
@@ -54,8 +51,25 @@ public class BookService {
 		bookRepository.deleteByTitle(title);
 	}
 	
-//	public Book update(Book book) {
-//		Book book = bookRepository.findById(book.getId());
-//		
-//	}
+	public Book update(Book obj) {
+		//Esse User obj é só o do App, nn tem reação com o BD
+		//Ao fzer isso ele vai instanciar o do BD para ser usado e atualizado.
+		Book newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return bookRepository.save(newObj);
+	}
+
+	//Transformando o newObj com os dados do obj
+	private void updateData(Book newObj, Book obj) {
+		newObj.setTitle(obj.getTitle());
+		newObj.setAuthor(obj.getAuthor());
+		newObj.setYear(obj.getYear());
+		newObj.setGenre(obj.getGenre());
+
+	}
+	
+	
+	public Book fromDTO(BookDTO objDTO) {
+		return new Book(objDTO.getId(), objDTO.getTitle(), objDTO.getAuthor(), objDTO.getYear(), objDTO.getGenre());
+	}
 }
