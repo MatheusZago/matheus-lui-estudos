@@ -51,6 +51,10 @@ public class BookService {
 		bookRepository.deleteByTitle(title);
 	}
 	
+	public List<Book> findByAuthor(String author) { 	
+		return bookRepository.findByAuthor(author);
+	}
+	
 	public Book update(Book obj) {
 		//Esse User obj é só o do App, nn tem reação com o BD
 		//Ao fzer isso ele vai instanciar o do BD para ser usado e atualizado.
