@@ -2,6 +2,7 @@ package com.matheus.library.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.matheus.library.domain.Book;
 import com.matheus.library.dto.BookDTO;
 import com.matheus.library.repository.BookRepository;
+import com.matheus.library.services.exception.ObjectNotFoundException;
 
 @Service
 public class BookService {
@@ -19,6 +21,11 @@ public class BookService {
 	//Essas informações vem do MongoRepository, que é oq o bookRepository usa
 	public List<Book> findAll(){
 		return bookRepository.findAll();
+	}
+	
+	public Book findById(String id) {
+		Optional<Book> book = bookRepository.findById(id);
+		return book.orElseThrow(() -> new ObjectNotFoundException("Object not found..."));
 	}
 	
 	//Metodo para inserir todos os valores 
@@ -46,4 +53,9 @@ public class BookService {
 	public void removeByTitle(String title) {
 		bookRepository.deleteByTitle(title);
 	}
+	
+//	public Book update(Book book) {
+//		Book book = bookRepository.findById(book.getId());
+//		
+//	}
 }

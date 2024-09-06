@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,12 @@ public class BookResource {
 		List<BookDTO> listDTO = list.stream().map(x -> new BookDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO); // usando responseentity para voltar com o código
 
+	} 
+	
+	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
+	public ResponseEntity<BookDTO> findById(@PathVariable String id) {
+		Book obj = bookService.findById(id);
+		return ResponseEntity.ok().body(new BookDTO(obj));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
