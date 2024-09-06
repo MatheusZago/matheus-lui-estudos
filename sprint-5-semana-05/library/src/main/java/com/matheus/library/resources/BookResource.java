@@ -44,6 +44,13 @@ public class BookResource {
         List<BookDTO> listDTO = books.stream().map(BookDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
+    
+    @GetMapping("/findByYear/{year}")
+    public ResponseEntity<List<BookDTO>> findByYear(@PathVariable String year) {
+        List<Book> books = bookService.findByYear(year);
+        List<BookDTO> listDTO = books.stream().map(BookDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+    }
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<BookDTO> findById(@PathVariable String id) {

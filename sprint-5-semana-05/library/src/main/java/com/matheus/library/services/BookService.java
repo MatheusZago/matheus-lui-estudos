@@ -53,6 +53,10 @@ public class BookService {
 	
 	public List<Book> findByAuthor(String author) { 	
 		return bookRepository.findByAuthor(author);
+	} 
+	
+	public List<Book> findByYear(String year) { 	
+		return bookRepository.findByYear(year);
 	}
 	
 	public Book update(Book obj) {

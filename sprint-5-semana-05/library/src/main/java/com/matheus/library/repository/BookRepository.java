@@ -18,4 +18,5 @@ public interface BookRepository extends MongoRepository<Book, String>{
     void deleteByTitle(String title);
     Book findByTitle(String title);
     List<Book> findByAuthor(String author);
+    List<Book> findByYear(String year);
 }
