@@ -26,6 +26,10 @@ public class BookService {
 		return bookRepository.insert(obj);
 	}
 	
+	public void Delete(String id) {
+		bookRepository.deleteById(id);
+	}
+	
 	public Book fromDTO(BookDTO objDTO) {
 		return new Book(objDTO.getId(), objDTO.getTitle(), objDTO.getAuthor(), objDTO.getYear(), objDTO.getGenre());
 	}
@@ -37,5 +41,9 @@ public class BookService {
 		Book book4 = new Book(null, "Animal Farm", "George Orwell", "1954", "Fabula");
 		
 		bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4));
+	}
+	
+	public void removeByTitle(String title) {
+		bookRepository.deleteByTitle(title);
 	}
 }
