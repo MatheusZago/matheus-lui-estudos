@@ -1,0 +1,70 @@
+package com.matheus.library.dto;
+
+import java.io.Serializable;
+
+import com.matheus.library.domain.Book;
+
+public class BookDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private String id;
+	private String title;
+	private String author;
+	private String year;
+	private String genre;
+	
+	public BookDTO() {
+		
+	}
+	
+	public BookDTO(Book book) {
+		id = book.getId();
+		title = book.getTitle();
+		author = book.getAuthor();
+		year = book.getYear();
+		genre = book.getGenre();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	
+	
+
+}
