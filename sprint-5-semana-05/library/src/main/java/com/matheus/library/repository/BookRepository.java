@@ -7,14 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.matheus.library.domain.Book;
 
-@Repository //Para virar um repositório
+//This class is responsability is to access the Database
+@Repository //To access the repository from mongo
 public interface BookRepository extends MongoRepository<Book, String>{ 
 	
-	//Usando Metodo Query para deleção
-//	@Query("{ 'title': ?0 }")
-//    void deleteByTitle(String title);
-
-    // Método de deleção baseado em nome do campo
+    //These methods are made from MongoRepository with Query Methods
     void deleteByTitle(String title);
     Book findByTitle(String title);
     List<Book> findByAuthor(String author);

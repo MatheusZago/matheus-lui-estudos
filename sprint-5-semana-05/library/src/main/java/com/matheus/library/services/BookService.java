@@ -12,13 +12,15 @@ import com.matheus.library.dto.BookDTO;
 import com.matheus.library.repository.BookRepository;
 import com.matheus.library.services.exception.ObjectNotFoundException;
 
-@Service
+//This class is used to resolve the logic of the project
+@Service //Services
 public class BookService {
 
-	@Autowired
+	@Autowired //Dpendency
 	private BookRepository bookRepository;
 	
-	//Essas informações vem do MongoRepository, que é oq o bookRepository usa
+	//This class is used 
+	
 	public List<Book> findAll(){
 		return bookRepository.findAll();
 	}

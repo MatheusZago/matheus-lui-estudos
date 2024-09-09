@@ -1,5 +1,6 @@
 package com.matheus.library.services.exception;
 
+//Personalized exception
 public class ObjectNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	

@@ -21,14 +21,15 @@ import com.matheus.library.domain.Book;
 import com.matheus.library.dto.BookDTO;
 import com.matheus.library.services.BookService;
 
-@RestController
-@RequestMapping(value = "/books")
+//This class is used to to resolve requests of the project
+@RestController //Rest Controller for the app to know that this is a controller
+@RequestMapping(value = "/books") //To know the endpoint to call this methods
 public class BookResource {
 
-	@Autowired
+	@Autowired //Dependency
 	private BookService bookService;
 
-	@GetMapping
+	@GetMapping //Find all for tests
 	public ResponseEntity<List<BookDTO>> findAll() {
 
 		List<Book> list = bookService.findAll();
@@ -38,6 +39,30 @@ public class BookResource {
 
 	}
 	
+	//Insert all to suffice item 2
+	@PostMapping("/insertAll")
+	public void insertAll() {
+		bookService.insertAll();
+		
+	}
+	
+	//Remove by title to suffice item 3
+	@DeleteMapping("/removeByTitle")
+	public ResponseEntity<Void> removeByTitle(@RequestParam String title) {
+		bookService.removeByTitle(title);
+		return ResponseEntity.noContent().build();
+	}
+	
+	//Update by title to suffice item 4
+	@PutMapping(value = "/{title}")
+	public ResponseEntity<Void> update(@RequestBody BookDTO objDto, @PathVariable String title) {
+		Book obj = bookService.fromDTO(objDto);
+		obj.setTitle(title);
+		obj = bookService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
+	//Find by author to sufice Item 5 
     @GetMapping("/findByAuthor/{author}")
     public ResponseEntity<List<BookDTO>> findByAuthor(@PathVariable String author) {
         List<Book> books = bookService.findByAuthor(author);
@@ -45,6 +70,7 @@ public class BookResource {
         return ResponseEntity.ok().body(listDTO);
     }
     
+    //Find by year to suffice Item 6
     @GetMapping("/findByYear/{year}")
     public ResponseEntity<List<BookDTO>> findByYear(@PathVariable String year) {
         List<Book> books = bookService.findByYear(year);
@@ -52,12 +78,14 @@ public class BookResource {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    //FindById for use in tests and in other methods
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<BookDTO> findById(@PathVariable String id) {
 		Book obj = bookService.findById(id);
 		return ResponseEntity.ok().body(new BookDTO(obj));
 	}
 
+	//Single insert for tests
 	@PostMapping
 	public ResponseEntity<Void> insert(@RequestBody BookDTO objdto) {
 		Book obj = bookService.fromDTO(objdto);
@@ -67,24 +95,6 @@ public class BookResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	@PutMapping(value = "/{title}")
-	public ResponseEntity<Void> update(@RequestBody BookDTO objDto, @PathVariable String title) {
-		Book obj = bookService.fromDTO(objDto);
-		obj.setTitle(title);
-		obj = bookService.update(obj);
-		return ResponseEntity.noContent().build();
-	}
 
-	@PostMapping("/insertAll")
-	public void insertAll() {
-		bookService.insertAll();
-
-	}
-
-	@DeleteMapping("/removeByTitle")
-	public ResponseEntity<Void> removeByTitle(@RequestParam String title) {
-		bookService.removeByTitle(title);
-		return ResponseEntity.noContent().build();
-	}
 
 }
