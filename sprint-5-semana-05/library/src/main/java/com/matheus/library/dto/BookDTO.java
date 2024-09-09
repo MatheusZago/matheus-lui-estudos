@@ -11,7 +11,7 @@ public class BookDTO implements Serializable {
 	private String id;
 	private String title;
 	private String author;
-	private String year;
+	private Integer year;
 	private String genre;
 	
 	public BookDTO() {
@@ -50,11 +50,11 @@ public class BookDTO implements Serializable {
 		this.author = author;
 	}
 
-	public String getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
