@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.matheus.library.domain.Book;
 
+//Class used to access and DTO format
 public class BookDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

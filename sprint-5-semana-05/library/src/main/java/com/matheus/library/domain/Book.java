@@ -6,11 +6,12 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "book") //Para dizer que é um documento do MongoDB
+//This class is used to represent the book collectino on the database
+@Document(collection = "book") //This is used to say it is a documento on the db linked with the collection book
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id //Transformando id em primary key
+	@Id //Transforming Id into the ID primary key
 	private String id;
 	private String title;
 	private String author;
