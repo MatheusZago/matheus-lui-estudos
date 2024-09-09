@@ -41,10 +41,10 @@ public class BookService {
 	
 	
 	public void insertAll() {
-		Book book1 = new Book(null, "1984", "George Orwell", "1949", "Ficção Cientifica");
-		Book book2 = new Book(null, "Dom Casmurro", "Machado de Assis", "1899", "Romance");
-		Book book3 = new Book(null, "The Lord of the Rings", "J.R.R. Tolkien", "1954", "Fantasia");
-		Book book4 = new Book(null, "Animal Farm", "George Orwell", "1954", "Fabula");
+		Book book1 = new Book(null, "1984", "George Orwell", 1949, "Ficção Cientifica");
+		Book book2 = new Book(null, "Dom Casmurro", "Machado de Assis", 1899, "Romance");
+		Book book3 = new Book(null, "The Lord of the Rings", "J.R.R. Tolkien", 1954, "Fantasia");
+		Book book4 = new Book(null, "Animal Farm", "George Orwell", 1954, "Fabula");
 		
 		bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4));
 	}
@@ -60,6 +60,14 @@ public class BookService {
 	public List<Book> findByYear(String year) { 	
 		return bookRepository.findByYear(year);
 	}
+	
+    public List<Book> findByYearGreaterThan(int year) {
+        return bookRepository.findByYearGreaterThan(year);
+    }
+
+    public List<Book> findByYearLessThan(int year) {
+        return bookRepository.findByYearLessThan(year);
+    }
 	
 	public Book update(Book obj) {
 		//Esse User obj é só o do App, nn tem reação com o BD

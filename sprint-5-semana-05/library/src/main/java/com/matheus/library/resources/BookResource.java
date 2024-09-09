@@ -77,6 +77,16 @@ public class BookResource {
         List<BookDTO> listDTO = books.stream().map(BookDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
+    
+    @GetMapping("/after/{year}")
+    public List<Book> findByYearGreaterThan(@PathVariable int year) {
+        return bookService.findByYearGreaterThan(year);
+    }
+
+    @GetMapping("/before/{year}")
+    public List<Book> findByYearLessThan(@PathVariable int year) {
+        return bookService.findByYearLessThan(year);
+    }
 
     //FindById for use in tests and in other methods
 	@GetMapping(value = "/{id}")

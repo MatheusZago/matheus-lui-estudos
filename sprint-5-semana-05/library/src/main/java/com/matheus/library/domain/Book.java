@@ -15,14 +15,14 @@ public class Book implements Serializable {
 	private String id;
 	private String title;
 	private String author;
-	private String year;
+	private Integer year;
 	private String genre;
 
 	public Book() {
 
 	}
 
-	public Book(String id, String title, String author, String year, String genre) {
+	public Book(String id, String title, String author, Integer year, String genre) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -57,11 +57,11 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 
-	public String getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
