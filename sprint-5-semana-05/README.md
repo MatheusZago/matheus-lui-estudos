@@ -8,6 +8,8 @@ Make sure you have the following tools installed:
 - Spring Tool Suit 4 or Eclipse.
 - Apache Maven.
 - MongoDB
+- MongoDB Compass
+- MongoDB Shell
 - Postman
 
 ## Instalation
@@ -26,15 +28,26 @@ Siga os passos abaixo para configurar o projeto no seu ambien
 2) Import the project as "Existing Projects into Workspace".
 3) Navigate to the project, select it, and click "Finish".
 
-3. **Create the Database** 
+3. **Create the Database  with mongoDB Compass** 
 
 1) On your CMD start MongoDB using the command 
 ```bash
    mongod
  ```
-2) Open your mongoDB and connect to Local connection.
+2) Open your mongoDB Compass and connect to Local connection.
 3) Create a 'library' database.
 4) Create a 'book' colection.
+
+3.1. **Create the Database with mongoDB Shell**
+1) On your CMD start MongoDB using the command 
+```bash
+   mongod
+ ```
+2) On another cmd, change the directory to the folder where the application is.
+3) Run the command 
+```bash
+mongosh setuplibrary.js
+ ```
  
 4. **Executing the project**
 1) Run the project as a spring boot app.
