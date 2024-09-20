@@ -11,17 +11,19 @@ import com.matheus.dto.PersonCreateDto;
 import com.matheus.dto.PersonResponseDto;
 import com.matheus.service.PersonService;
 
-
+//Controller to deal with the requests for the method
 @RestController
 @RequestMapping("/person")
 public class PersonController {
 
+	//Creating a dependency with service to use its methods
 	@Autowired
 	private PersonService service;
 	
 	@PostMapping()
 	public ResponseEntity<PersonResponseDto> login(@RequestBody PersonCreateDto person) {
 		PersonResponseDto test = service.login(person);
+		//Returning a request body with the values of the ResponseDto
 		return ResponseEntity.ok(test);
 	}
 	

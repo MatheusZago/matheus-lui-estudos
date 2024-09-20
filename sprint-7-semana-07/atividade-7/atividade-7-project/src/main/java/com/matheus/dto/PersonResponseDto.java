@@ -2,6 +2,7 @@ package com.matheus.dto;
 
 public class PersonResponseDto {
 
+	//This is the Dto that is used in the response body of the login request
 	private String name;
 	private String msg;
 
